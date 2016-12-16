@@ -58,7 +58,7 @@
         </thead>
         <tbody>
         <?php foreach($grid->getData() as $row) : ?>
-            <tr id=1 class="<?=($row['mark_read'] == 0) ? 'bold' : ''?>">
+            <tr data-id="<?=$row['id']?>" class="<?=($row['mark_read'] == 0) ? 'bold' : ''?>">
                 <td><?=$row['id']?></td>
                 <td><?=$this->ProfileLinkByEmail($row['email']) ?: $row['name']?></td>
                 <td><a href="mailto:<?=$row['email']?>"><?=$row['email']?></a></td>
