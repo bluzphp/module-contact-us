@@ -50,6 +50,8 @@ return function ($name, $email, $subject, $message, $captcha) {
                 $row->subject = $subject;
                 $row->message = $message;
                 $result = $row->save();
+            } else {
+                Messages::addError('Invalid captcha');
             }
         }
 
@@ -60,7 +62,7 @@ return function ($name, $email, $subject, $message, $captcha) {
             Messages::addError('Invalid form data');
         }
     } else {
-        $captcha = rand(1234, 9123);
+        $captcha = rand(1000, 9999);
         Session::set('captcha', $captcha);
 
         $this->assign('captcha', $captcha);
