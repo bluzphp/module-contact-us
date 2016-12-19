@@ -60,7 +60,6 @@ return function ($name, $email, $subject, $message) {
         } else {
             Messages::addError('Invalid form data');
         }
-
     } else {
         $siteKey = Config::getModuleData('contact-us', 'siteKey');
 
