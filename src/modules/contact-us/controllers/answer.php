@@ -25,11 +25,7 @@ return
             throw new Exception('Row not found', 404);
         }
 
-        if (Request::isPost()) {
-            $row->mark_read ? $row->mark_read = 0 : $row->mark_read = 1;
-            $row->save();
-            return;
-        }
+        ($row->mark_answered) ? $row->mark_answered = 0 : $row->mark_answered = 1;
 
-        $this->assign('row', $row);
+        $row->save();
     };

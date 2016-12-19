@@ -23,7 +23,7 @@ return
         /**
          * @var Controller $this
          */
-        $row = ContactUs\Table::findRow(['id' => $id]);
+        $row = ContactUs\Table::findRow($id);
         if (empty($row)) {
             throw new Exception('Row not found', 404);
         }

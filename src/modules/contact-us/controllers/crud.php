@@ -21,6 +21,7 @@ return function () {
      * @var Controller $this
      */
     $crud = new Crud();
+
     $crud->setCrud(ContactUs\Crud::getInstance());
 
     $crud->get('system', 'crud/get');
