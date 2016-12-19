@@ -25,7 +25,7 @@ return
             throw new Exception('Row not found', 404);
         }
 
-        ($row->mark_answered) ? $row->mark_answered = 0 : $row->mark_answered = 1;
+        $row->answered = !$row->answered;
 
         $row->save();
     };

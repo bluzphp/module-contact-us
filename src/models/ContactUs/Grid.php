@@ -38,8 +38,8 @@ class Grid extends \Bluz\Grid\Grid
 
         $this->setAdapter($adapter);
         $this->setDefaultLimit(self::DEFAULT_LIMIT);
-        $this->setAllowOrders(['id', 'name', 'email', 'mark_read', 'mark_answered', 'created', 'updated']);
-        $this->setAllowFilters(['name', 'email', 'mark_read', 'mark_answered']);
+        $this->setAllowOrders(['id', 'name', 'email', 'readed', 'answered', 'created', 'updated']);
+        $this->setAllowFilters(['name', 'email', 'readed', 'answered']);
         return $this;
     }
 }
