@@ -4,12 +4,16 @@
  * @var \Bluz\View\View $this
  */
 ?>
+<script>
+  // use data-spy="grid" for use AJAX for reload grid
+  require(['bluz.grid']);
+</script>
 
 <div class="clearfix" data-spy="grid" data-grid="<?=$grid->getUid()?>">
     <nav class="navbar navbar-default" role="navigation">
         <div class="col-lg-6">
-            <a href="<?=$grid->filter('mark_read', 'ne', 1)?>" class="btn btn-default navbar-btn mark-read-filter ajax">Unread</a>
-            <a href="<?=$grid->filter('mark_read', 'eq', 1)?>" class="btn btn-default navbar-btn mark-read-filter ajax">Read</a>
+            <a href="<?=$grid->filter('mark_read', 'ne', 1)?>" class="btn btn-default navbar-btn ajax">Unread</a>
+            <a href="<?=$grid->filter('mark_read', 'eq', 1)?>" class="btn btn-default navbar-btn ajax">Read</a>
         </div>
         <div class="col-lg-6">
             <form action="<?=$this->url('contact-us', 'grid')?>" class="navbar-form filter-form pull-right">

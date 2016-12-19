@@ -1,6 +1,6 @@
 <?php
 /**
- * Read page
+ * Answer
  */
 
 /**
@@ -21,7 +21,7 @@ return
          */
         $row = ContactUs\Table::findRow($id);
 
-        if (empty($row)) {
+        if (!$row) {
             throw new Exception('Row not found', 404);
         }
 

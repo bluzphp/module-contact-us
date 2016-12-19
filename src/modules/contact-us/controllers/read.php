@@ -28,7 +28,6 @@ return
         if (Request::isPost()) {
             $row->mark_read ? $row->mark_read = 0 : $row->mark_read = 1;
             $row->save();
-            return;
         }
 
         $this->assign('row', $row);

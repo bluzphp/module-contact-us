@@ -32,11 +32,12 @@ return function ($name, $email, $subject, $message) {
             __('Contact us')
         ]
     );
+    $user = $this->user();
 
     if (Request::isPost()) {
         $row = new Row();
 
-        if (!$this->user()) {
+        if (!$user) {
             $reCaptcha = new ReCaptcha(Config::getModuleData('contact-us', 'secretKey'));
             $response = $reCaptcha->verify(Request::getParam('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
 
@@ -46,8 +47,8 @@ return function ($name, $email, $subject, $message) {
             }
         }
 
-        $row->name = $this->user() ? $this->user()->login : $name;
-        $row->email = $this->user() ? $this->user()->email : $email;
+        $row->name = $user ? $user->login : $name;
+        $row->email = $user ? $user->email : $email;
 
         $row->subject = $subject;
         $row->message = $message;
@@ -62,7 +63,7 @@ return function ($name, $email, $subject, $message) {
     } else {
         $siteKey = Config::getModuleData('contact-us', 'siteKey');
 
-        $this->assign('user', $this->user());
+        $this->assign('user', $user);
         $this->assign('siteKey', $siteKey);
     }
 };

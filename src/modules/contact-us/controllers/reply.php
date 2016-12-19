@@ -33,6 +33,7 @@ return
             $mail->Subject = 'Reply';
             $mail->MsgHTML($message);
             $mail->AddAddress($row['email']);
+
             if (Mailer::send($mail)) {
                 $row->mark_answered = 1;
                 $row->save();
@@ -40,7 +41,7 @@ return
                 Response::redirectTo('contact-us', 'grid');
             }
         } else {
-            if ($row->mark_read == 0) {
+            if (!$row->mark_read) {
                 $row->mark_read = 1;
                 $row->save();
             }
