@@ -26,7 +26,7 @@ return
         }
 
         if (Request::isPost()) {
-            $row->readed = !$row->readed;
+            $row->markRead = !$row->markRead;
             $row->save();
         }
 

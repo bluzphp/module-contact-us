@@ -35,14 +35,14 @@ return
             $mail->AddAddress($row['email']);
 
             if (Mailer::send($mail)) {
-                $row->answered = 1;
+                $row->markAnswered = 1;
                 $row->save();
                 Messages::addSuccess('Message was successfully sent to ' . $row['email']);
                 Response::redirectTo('contact-us', 'grid');
             }
         } else {
-            if (!$row->readed) {
-                $row->readed = 1;
+            if (!$row->markRead) {
+                $row->markRead = 1;
                 $row->save();
             }
             $this->assign('row', $row);

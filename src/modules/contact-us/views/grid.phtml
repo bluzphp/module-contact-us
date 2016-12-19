@@ -12,8 +12,8 @@
 <div class="clearfix" data-spy="grid" data-grid="<?=$grid->getUid()?>">
     <nav class="navbar navbar-default" role="navigation">
         <div class="col-lg-6">
-            <a href="<?=$grid->filter('readed', 'ne', 1)?>" class="btn btn-default navbar-btn ajax">Unread</a>
-            <a href="<?=$grid->filter('readed', 'eq', 1)?>" class="btn btn-default navbar-btn ajax">Read</a>
+            <a href="<?=$grid->filter('markRead', 'ne', 1)?>" class="btn btn-default navbar-btn ajax">Unread</a>
+            <a href="<?=$grid->filter('markRead', 'eq', 1)?>" class="btn btn-default navbar-btn ajax">Read</a>
         </div>
         <div class="col-lg-6">
             <form action="<?=$this->url('contact-us', 'grid')?>" class="navbar-form filter-form pull-right">
@@ -26,8 +26,8 @@
                             'filters' => [
                                 'name' => __('Name'),
                                 'email' => __('Email'),
-                                'readed' => __('Readed'),
-                                'answered' => __('Answered'),
+                                'markRead' => __('Readed'),
+                                'markAnswered' => __('Answered'),
                             ]
                         ]
                     )
@@ -50,15 +50,15 @@
             <th><a href="<?=$grid->order('name')?:'#'?>"><?=__('Name')?></a></th>
             <th><a href="<?=$grid->order('email')?:'#'?>"><?=__('Email')?></a></th>
             <th width="130px"><?=__('Subject')?></th>
-            <th><a href="<?=$grid->order('readed')?:'#'?>"><?=__('Readed')?></a></th>
-            <th><a href="<?=$grid->order('answered')?:'#'?>"><?=__('Answered')?></a></th>
+            <th><a href="<?=$grid->order('markRead')?:'#'?>"><?=__('Readed')?></a></th>
+            <th><a href="<?=$grid->order('markAnswered')?:'#'?>"><?=__('Answered')?></a></th>
             <th><a href="<?=$grid->order('created')?>"><?=__('Created')?></a></th>
             <th width="100px"></th>
         </tr>
         </thead>
         <tbody>
         <?php foreach($grid->getData() as $row) : ?>
-            <tr data-id="<?=$row['id']?>" class="<?=($row['readed'] == 0) ? 'bold' : ''?>">
+            <tr data-id="<?=$row['id']?>" class="<?=($row['markRead'] == 0) ? 'bold' : ''?>">
                 <td><?=$row['id']?></td>
                 <td><?=$row['userId'] ? $this->ahref($row['name'], ['users', 'profile'], ['id' => $row['userId']]) : $row['name']?></td>
                 <td><a href="mailto:<?=$row['email']?>"><?=$row['email']?></a></td>
@@ -69,12 +69,12 @@
                 </td>
                 <td>
                     <a id="read" href="<?=$this->url('contact-us', 'read', ['id' => $row['id']])?>" class="btn btn-xs ajax">
-                        <i class="fa <?=($row['readed']) ? 'fa-check-square-o' : 'fa-square-o'?>"></i>
+                        <i class="fa <?=($row['markRead']) ? 'fa-check-square-o' : 'fa-square-o'?>"></i>
                     </a>
                 </td>
                 <td>
                     <a id="answer" href="<?=$this->url('contact-us', 'answer', ['id' => $row['id']])?>" class="btn btn-xs ajax">
-                        <i class="fa <?=($row['answered']) ? 'fa-check-square-o' : 'fa-square-o'?>"></i>
+                        <i class="fa <?=($row['markAnswered']) ? 'fa-check-square-o' : 'fa-square-o'?>"></i>
                     </a>
                 </td>
                 <td><?=$row['created']?></td>
