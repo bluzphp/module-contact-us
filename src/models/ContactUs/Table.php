@@ -31,5 +31,4 @@ class Table extends \Bluz\Db\Table
      * @var array
      */
     protected $primary = array('id');
-
 }
