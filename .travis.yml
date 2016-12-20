@@ -16,7 +16,7 @@ install:
   - cd skeleton
   - vendor/bin/phinx migrate -e default
   # composer require
-  - composer require bluzphp/module-contact-us
+  - composer require bluzphp/module-contact-us:dev-master
   # Newman
   - npm install -g newman@1
 script:
