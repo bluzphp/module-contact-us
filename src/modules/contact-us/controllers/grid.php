@@ -10,7 +10,6 @@
 namespace Application;
 
 use Bluz\Proxy\Layout;
-use Bluz\Proxy\Request;
 use Bluz\Controller\Controller;
 
 /**

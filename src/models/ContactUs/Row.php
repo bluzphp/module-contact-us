@@ -21,11 +21,11 @@ use Bluz\Proxy\Auth;
  * @property string $email
  * @property string $subject
  * @property string $message
- * @property boolean $readed
- * @property boolean $answered
+ * @property boolean $markRead
+ * @property boolean $markAnswered
  * @property string $created
  * @property string $updated
- * @property string $user_id
+ * @property string $userId
  *
  * @category Application
  * @package  ContactUs

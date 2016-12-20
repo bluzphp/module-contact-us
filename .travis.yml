@@ -5,6 +5,8 @@ php:
 install:
   # ImageMagick
   #- printf "\n" | pecl install imagick
+  # Set environment
+  - BLUZ_ENV=default
   # Composer
   - rm -rf ./*
   - composer self-update
@@ -14,7 +16,7 @@ install:
   - cd skeleton
   - vendor/bin/phinx migrate -e default
   # composer require
-  - BLUZ_ENV=default composer require bluzphp/module-contact-us
+  - composer require bluzphp/module-contact-us
   # Newman
   - npm install -g newman@1
 script:
