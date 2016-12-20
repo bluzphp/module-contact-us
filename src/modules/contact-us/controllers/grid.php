@@ -14,11 +14,9 @@ use Bluz\Proxy\Request;
 use Bluz\Controller\Controller;
 
 /**
- * @param int $id
- * @param string $mark
- * @param int $value
+ * @return void
  */
-return function ($id, $mark, $value) {
+return function () {
     /**
      * @var Controller $this
      */
@@ -29,16 +27,6 @@ return function ($id, $mark, $value) {
             __('Contact Us')
         ]
     );
-
-    if (Request::isPost()) {
-        $row = ContactUs\Table::findRow($id);
-        if ($mark == 'read') {
-            $row->mark_read = $value;
-        } elseif ($mark == 'answered') {
-            $row->mark_answered = $value;
-        }
-        $row->save();
-    }
 
     $grid = new ContactUs\Grid();
     $grid->setModule($this->module);

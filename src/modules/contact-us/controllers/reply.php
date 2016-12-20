@@ -23,7 +23,7 @@ return
         /**
          * @var Controller $this
          */
-        $row = ContactUs\Table::findRow(['id' => $id]);
+        $row = ContactUs\Table::findRow($id);
         if (empty($row)) {
             throw new Exception('Row not found', 404);
         }
@@ -33,15 +33,16 @@ return
             $mail->Subject = 'Reply';
             $mail->MsgHTML($message);
             $mail->AddAddress($row['email']);
+
             if (Mailer::send($mail)) {
-                $row->mark_answered = 1;
+                $row->markAnswered = 1;
                 $row->save();
                 Messages::addSuccess('Message was successfully sent to ' . $row['email']);
                 Response::redirectTo('contact-us', 'grid');
             }
         } else {
-            if ($row->mark_read == 0) {
-                $row->mark_read = 1;
+            if (!$row->markRead) {
+                $row->markRead = 1;
                 $row->save();
             }
             $this->assign('row', $row);

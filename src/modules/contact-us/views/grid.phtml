@@ -4,16 +4,16 @@
  * @var \Bluz\View\View $this
  */
 ?>
-
 <script>
-    require(['bluz.grid', 'contact-us/checkbox.mark']);
+  // use data-spy="grid" for use AJAX for reload grid
+  require(['bluz.grid']);
 </script>
 
 <div class="clearfix" data-spy="grid" data-grid="<?=$grid->getUid()?>">
     <nav class="navbar navbar-default" role="navigation">
         <div class="col-lg-6">
-            <a href="<?=$grid->filter('mark_read', 'ne', 1)?>" class="btn btn-default navbar-btn mark-read-filter ajax">Unread</a>
-            <a href="<?=$grid->filter('mark_read', 'eq', 1)?>" class="btn btn-default navbar-btn mark-read-filter ajax">Read</a>
+            <a href="<?=$grid->filter('markRead', 'ne', 1)?>" class="btn btn-default navbar-btn ajax">Unread</a>
+            <a href="<?=$grid->filter('markRead', 'eq', 1)?>" class="btn btn-default navbar-btn ajax">Read</a>
         </div>
         <div class="col-lg-6">
             <form action="<?=$this->url('contact-us', 'grid')?>" class="navbar-form filter-form pull-right">
@@ -26,8 +26,8 @@
                             'filters' => [
                                 'name' => __('Name'),
                                 'email' => __('Email'),
-                                'mark_read' => __('Mark_read'),
-                                'mark_answered' => __('Mark_answered'),
+                                'markRead' => __('Readed'),
+                                'markAnswered' => __('Answered'),
                             ]
                         ]
                     )
@@ -50,28 +50,32 @@
             <th><a href="<?=$grid->order('name')?:'#'?>"><?=__('Name')?></a></th>
             <th><a href="<?=$grid->order('email')?:'#'?>"><?=__('Email')?></a></th>
             <th width="130px"><?=__('Subject')?></th>
-            <th><a href="<?=$grid->order('mark_read')?:'#'?>"><?=__('Mark read')?></a></th>
-            <th><a href="<?=$grid->order('mark_answered')?:'#'?>"><?=__('Mark answered')?></a></th>
+            <th><a href="<?=$grid->order('markRead')?:'#'?>"><?=__('Readed')?></a></th>
+            <th><a href="<?=$grid->order('markAnswered')?:'#'?>"><?=__('Answered')?></a></th>
             <th><a href="<?=$grid->order('created')?>"><?=__('Created')?></a></th>
             <th width="100px"></th>
         </tr>
         </thead>
         <tbody>
         <?php foreach($grid->getData() as $row) : ?>
-            <tr data-id="<?=$row['id']?>" class="<?=($row['mark_read'] == 0) ? 'bold' : ''?>">
+            <tr data-id="<?=$row['id']?>" class="<?=($row['markRead'] == 0) ? 'bold' : ''?>">
                 <td><?=$row['id']?></td>
-                <td><?=$this->ProfileLinkByEmail($row['email']) ?: $row['name']?></td>
+                <td><?=$row['userId'] ? $this->ahref($row['name'], ['users', 'profile'], ['id' => $row['userId']]) : $row['name']?></td>
                 <td><a href="mailto:<?=$row['email']?>"><?=$row['email']?></a></td>
                 <td>
-                    <a href="<?=$this->url('contact-us', 'read', ['id' => $row['id']])?>" class="dialog subject" data-id="<?=$row['id']?>" data-ajax-method="get" data-modal-style="width:700px;">
+                    <a id="subject" href="<?=$this->url('contact-us', 'read', ['id' => $row['id']])?>" class="dialog" data-ajax-method="get" data-modal-style="width:700px;">
                         <?=$row['subject']?>
                     </a>
                 </td>
                 <td>
-                    <input data-url="<?=$this->url('contact-us', 'grid')?>" class="checkboxRead" type="checkbox" name="<?=$row['id']?>" <?=($row['mark_read'] == 1) ? 'checked' : ''?> >
+                    <a id="read" href="<?=$this->url('contact-us', 'read', ['id' => $row['id']])?>" class="btn btn-xs ajax">
+                        <i class="fa <?=($row['markRead']) ? 'fa-check-square-o' : 'fa-square-o'?>"></i>
+                    </a>
                 </td>
                 <td>
-                    <input data-url="<?=$this->url('contact-us', 'grid')?>" class="checkboxAnswered" type="checkbox" name="<?=$row['id']?>" <?=($row['mark_answered'] == 1) ? 'checked' : ''?> >
+                    <a id="answer" href="<?=$this->url('contact-us', 'answer', ['id' => $row['id']])?>" class="btn btn-xs ajax">
+                        <i class="fa <?=($row['markAnswered']) ? 'fa-check-square-o' : 'fa-square-o'?>"></i>
+                    </a>
                 </td>
                 <td><?=$row['created']?></td>
                 <td class="controls">
@@ -93,5 +97,17 @@
     <?=$this->partial('grid/empty-rows.phtml', ['grid'=>$grid]) ?>
     <?=$this->partial('grid/pagination.phtml', ['grid'=>$grid]) ?>
     <?=$this->partial('grid/total.phtml', ['grid'=>$grid]) ?>
+
+  <script>
+    require(['jquery'], function($) {
+      $(function(){
+        $('#read, #answer').on('success.ajax.bluz', function() {
+          let icon = $(this).find('i');
+          (icon.hasClass('fa-square-o') && icon.removeClass()) ? icon.addClass('fa-check-square-o fa') : icon.addClass('fa-square-o fa')
+        });
+      })
+    })
+  </script
+
 
 </div>

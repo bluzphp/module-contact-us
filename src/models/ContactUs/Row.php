@@ -11,6 +11,7 @@ namespace Application\ContactUs;
 
 use Bluz\Validator\Traits\Validator;
 use Bluz\Validator\Validator as v;
+use Bluz\Proxy\Auth;
 
 /**
  * Options Row
@@ -20,10 +21,11 @@ use Bluz\Validator\Validator as v;
  * @property string $email
  * @property string $subject
  * @property string $message
- * @property boolean $mark_read
- * @property boolean $mark_answered
+ * @property boolean $readed
+ * @property boolean $answered
  * @property string $created
  * @property string $updated
+ * @property string $user_id
  *
  * @category Application
  * @package  ContactUs
@@ -37,18 +39,21 @@ class Row extends \Bluz\Db\Row
      */
     protected function beforeSave()
     {
-        $this->addValidator(
-            'name',
-            v::required()->setError('Value is required')
-        );
-        $this->addValidator(
-            'email',
-            v::required()->setError('Value is required'),
-            v::email()->setError('Please fill correct email address')
-        );
+        if (!Auth::getIdentity()) {
+            $this->addValidator(
+                'name',
+                v::required()
+            );
+            $this->addValidator(
+                'email',
+                v::required(),
+                v::email()
+            );
+        }
+
         $this->addValidator(
             'message',
-            v::required()->setError('Value is required')
+            v::required()
         );
     }
 
@@ -58,6 +63,11 @@ class Row extends \Bluz\Db\Row
     public function beforeInsert()
     {
         $this->created = gmdate('Y-m-d H:i:s');
+
+        /* @var \Application\Users\Row $user */
+        if ($user = Auth::getIdentity()) {
+            $this->userId = $user->id;
+        }
     }
 
     /**

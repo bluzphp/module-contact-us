@@ -1,9 +1,15 @@
 <?php
+/**
+ * @copyright Bluz PHP Team
+ * @link https://github.com/bluzphp/skeleton
+ */
 
 /**
  * @namespace
  */
 namespace Application\ContactUs;
+
+use Bluz\Grid\Source\SqlSource;
 
 /**
  * Grid based on SQL
@@ -18,6 +24,8 @@ class Grid extends \Bluz\Grid\Grid
      */
     protected $uid = 'contact_us';
 
+    const DEFAULT_LIMIT = 25;
+
     /**
      * init
      *
@@ -25,13 +33,13 @@ class Grid extends \Bluz\Grid\Grid
      */
     public function init()
     {
-        $adapter = new \Bluz\Grid\Source\SqlSource();
+        $adapter = new SqlSource();
         $adapter->setSource('SELECT * FROM contact_us');
 
         $this->setAdapter($adapter);
-        $this->setDefaultLimit(25);
-        $this->setAllowOrders(['id', 'name', 'email', 'mark_read', 'mark_answered', 'created', 'updated']);
-        $this->setAllowFilters(['name', 'email', 'mark_read', 'mark_answered']);
+        $this->setDefaultLimit(self::DEFAULT_LIMIT);
+        $this->setAllowOrders(['id', 'name', 'email', 'readed', 'answered', 'created', 'updated']);
+        $this->setAllowFilters(['name', 'email', 'readed', 'answered']);
         return $this;
     }
 }

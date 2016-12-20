@@ -4,7 +4,8 @@
   "license": "MIT",
   "description": "Contact us bluz module",
   "require": {
-    "bluzphp/composer-plugin": "~1.0"
+    "bluzphp/composer-plugin": "~1.0",
+    "google/recaptcha": "~1.1"
   },
   "extra": {
     "bluz": {
