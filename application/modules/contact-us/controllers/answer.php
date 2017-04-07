@@ -8,8 +8,8 @@
  */
 namespace Application;
 
+use Bluz\Application\Exception\NotFoundException;
 use Bluz\Controller\Controller;
-use Bluz\Proxy\Request;
 
 return
     /**
@@ -22,7 +22,7 @@ return
         $row = ContactUs\Table::findRow($id);
 
         if (!$row) {
-            throw new Exception('Row not found', 404);
+            throw new NotFoundException('Row not found');
         }
 
         $row->markAnswered = !$row->markAnswered;

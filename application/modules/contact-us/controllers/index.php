@@ -8,10 +8,10 @@
  */
 namespace Application;
 
+use Application\ContactUs\Row;
 use Bluz\Proxy\Request;
 use Bluz\Proxy\Messages;
 use Bluz\Controller\Controller;
-use Application\ContactUs\Row;
 use Bluz\Proxy\Layout;
 use Bluz\Proxy\Config;
 use ReCaptcha\ReCaptcha;

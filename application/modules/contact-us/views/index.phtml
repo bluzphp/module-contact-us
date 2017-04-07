@@ -6,7 +6,7 @@
 ?>
 
 <div class="row">
-    <h3>Contact us</h3>
+    <h3><?=__('Contact us')?></h3>
     <div class="col-lg-8">
         <?php if ($user != null) { ?>
             <form class="form-horizontal ajax" method="post" action="<?=$this->url('contact-us', 'index')?>" enctype="application/x-www-form-urlencoded">

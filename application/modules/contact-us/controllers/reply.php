@@ -8,6 +8,7 @@
  */
 namespace Application;
 
+use Bluz\Application\Exception\NotFoundException;
 use Bluz\Proxy\Messages;
 use Bluz\Proxy\Request;
 use Bluz\Proxy\Mailer;
@@ -25,7 +26,7 @@ return
          */
         $row = ContactUs\Table::findRow($id);
         if (empty($row)) {
-            throw new Exception('Row not found', 404);
+            throw new NotFoundException('Row not found');
         }
 
         if (Request::isPost()) {

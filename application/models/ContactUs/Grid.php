@@ -19,12 +19,12 @@ use Bluz\Grid\Source\SqlSource;
  */
 class Grid extends \Bluz\Grid\Grid
 {
+    const DEFAULT_LIMIT = 25;
+
     /**
      * @var string
      */
     protected $uid = 'contact_us';
-
-    const DEFAULT_LIMIT = 25;
 
     /**
      * init
