@@ -50,22 +50,13 @@ class ModuleContactUs extends AbstractMigration
             ])
             ->create();
 
+
         $data = [
             [
                 'roleId' => 2,
-                'module' => 'media',
+                'module' => 'contact-us',
                 'privilege' => 'Management'
-            ],
-            [
-                'roleId' => 2,
-                'module' => 'media',
-                'privilege' => 'Upload'
-            ],
-            [
-                'roleId' => 3,
-                'module' => 'media',
-                'privilege' => 'Upload'
-            ],
+            ]
         ];
 
         $privileges = $this->table('acl_privileges');
