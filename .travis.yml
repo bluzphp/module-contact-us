@@ -10,7 +10,7 @@ install:
   - mysql -e 'CREATE DATABASE bluz;'
   - cd skeleton
   # Require current module
-  - composer require bluzphp/contact-us:dev-master
+  - composer require bluzphp/module-contact-us:dev-master
   # Migrations
   - vendor/bin/phinx migrate -e default
   - vendor/bin/phinx seed:run
