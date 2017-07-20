@@ -20,8 +20,7 @@ return function () {
     /**
      * @var Controller $this
      */
-    $crud = new Crud();
-    $crud->setCrud(ContactUs\Crud::getInstance());
+    $crud = new Crud(ContactUs\Crud::getInstance());
 
     $crud->get('system', 'crud/get');
     $crud->post('system', 'crud/post');

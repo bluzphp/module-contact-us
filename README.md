@@ -12,32 +12,18 @@
 
 [![License](https://poser.pugx.org/bluzphp/module-contact-us/license)](https://packagist.org/packages/bluzphp/module-contact-us)
 
-
 Usage
 -------------------------
 ### Install module
 To install the module run the command:
   
-
-    $ composer require bluzphp/module-contact-us
-
-Then you must enter the environment
-
-
-    Please, enter your environment[dev, production, testing or another] dev
-
-
-If you use no-interaction mode, you must set an environment variable
-  
-
-    $ BLUZ_ENV=dev composer require bluzphp/module-contact-us -n
-
+```bash
+php /vendor/bin/bluzman module:install contact-us
+```
 
 ### Remove module
 To remove the module, run the command:
     
-
-    $ composer remove bluzphp/module-contact-us
-
-
-
+```bash
+php /vendor/bin/bluzman module:remove contact-us
+```
