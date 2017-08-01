@@ -39,14 +39,23 @@ class Row extends \Bluz\Db\Row
     {
         if (!Auth::getIdentity()) {
             $this->addValidator('name')
-                ->required();
+                ->required()
+                ->alpha(' \'')
+            ;
             $this->addValidator('email')
                 ->required()
-                ->email();
+                ->email()
+            ;
         }
 
+        $this->addValidator('subject')
+            ->required()
+            ->alpha(' \'')
+        ;
+
         $this->addValidator('message')
-            ->required();
+            ->required()
+        ;
     }
 
     /**
