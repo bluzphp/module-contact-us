@@ -10,10 +10,17 @@ checks:
       deprecated_code_usage: true
       code_rating: true
 filter:
-  excluded_paths:
-    - bin/
-    - tests/
+  excluded_paths: [bin, data, tests, vendor]
 tools:
+  php_analyzer: true
   php_code_sniffer:
     config:
       standard: PSR2
+  php_cpd:
+      enabled: true
+      excluded_dirs: [bin, data, tests, vendor]
+  php_loc:
+      enabled: true
+      excluded_dirs: [bin, data, tests, vendor]
+  php_mess_detector: true
+  php_pdepend: true
