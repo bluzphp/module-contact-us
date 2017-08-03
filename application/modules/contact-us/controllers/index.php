@@ -1,19 +1,23 @@
 <?php
 /**
- * Add message page
+ * @copyright Bluz PHP Team
+ * @link      https://github.com/bluzphp/skeleton
  */
 
-/**
- * @namespace
- */
+declare(strict_types=1);
+
 namespace Application;
 
 use Application\ContactUs\Row;
+use Bluz\Db\Exception\DbException;
+use Bluz\Proxy\Logger;
 use Bluz\Proxy\Request;
 use Bluz\Proxy\Messages;
 use Bluz\Controller\Controller;
 use Bluz\Proxy\Layout;
 use Bluz\Proxy\Config;
+use Bluz\Proxy\Response;
+use Bluz\Validator\Exception\ValidatorException;
 use ReCaptcha\ReCaptcha;
 
 /**
@@ -21,7 +25,7 @@ use ReCaptcha\ReCaptcha;
  * @param string $email
  * @param string $subject
  * @param string $message
- * @return \closure
+ * @return array
  */
 return function ($name, $email, $subject, $message) {
     /**
@@ -44,7 +48,7 @@ return function ($name, $email, $subject, $message) {
 
             if (!$response->isSuccess()) {
                 Messages::addError('Invalid captcha');
-                return;
+                return [];
             }
         }
 
@@ -53,12 +57,18 @@ return function ($name, $email, $subject, $message) {
 
         $row->subject = $subject;
         $row->message = $message;
-        $result = $row->save();
 
-        if ($result) {
+        try {
+            $row->save();
             Messages::addSuccess('Message was successfully save');
-        } else {
-            Messages::addError('Invalid form data');
+            Response::reload();
+        } catch (ValidatorException $e) {
+            Messages::addError('Please fix all errors');
+            return [
+                'errors' => $e->getErrors()
+            ];
+        } catch (DbException $e) {
+            Messages::addError('Please contact administrator');
         }
     } else {
         $siteKey = Config::getModuleData('contact-us', 'siteKey');

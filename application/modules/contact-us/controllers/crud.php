@@ -1,8 +1,11 @@
 <?php
-
 /**
- * @namespace
+ * @copyright Bluz PHP Team
+ * @link      https://github.com/bluzphp/skeleton
  */
+
+declare(strict_types=1);
+
 namespace Application;
 
 use Application\ContactUs;
@@ -10,8 +13,8 @@ use Bluz\Controller\Mapper\Crud;
 use Bluz\Controller\Controller;
 
 /**
- * @accept HTML
- * @accept JSON
+ * @accept    HTML
+ * @accept    JSON
  * @privilege Management
  *
  * @return mixed

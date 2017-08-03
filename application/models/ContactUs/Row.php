@@ -4,13 +4,11 @@
  * @link https://github.com/bluzphp/skeleton
  */
 
-/**
- * @namespace
- */
+declare(strict_types=1);
+
 namespace Application\ContactUs;
 
 use Bluz\Validator\Traits\Validator;
-use Bluz\Validator\Validator as v;
 use Bluz\Proxy\Auth;
 
 /**
@@ -40,21 +38,24 @@ class Row extends \Bluz\Db\Row
     protected function beforeSave()
     {
         if (!Auth::getIdentity()) {
-            $this->addValidator(
-                'name',
-                v::required()
-            );
-            $this->addValidator(
-                'email',
-                v::required(),
-                v::email()
-            );
+            $this->addValidator('name')
+                ->required()
+                ->alpha(' \'')
+            ;
+            $this->addValidator('email')
+                ->required()
+                ->email()
+            ;
         }
 
-        $this->addValidator(
-            'message',
-            v::required()
-        );
+        $this->addValidator('subject')
+            ->required()
+            ->alpha(' \'')
+        ;
+
+        $this->addValidator('message')
+            ->required()
+        ;
     }
 
     /**

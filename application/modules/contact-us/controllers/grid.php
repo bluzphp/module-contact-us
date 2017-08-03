@@ -1,18 +1,19 @@
 <?php
 /**
- * Grid of contact us messages
- * @return closure
+ * @copyright Bluz PHP Team
+ * @link      https://github.com/bluzphp/skeleton
  */
 
-/**
- * @namespace
- */
+declare(strict_types=1);
+
 namespace Application;
 
 use Bluz\Proxy\Layout;
 use Bluz\Controller\Controller;
 
 /**
+ * @privilege Management
+ *
  * @return void
  */
 return function () {
