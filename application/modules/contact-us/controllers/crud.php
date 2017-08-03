@@ -19,7 +19,7 @@ use Bluz\Controller\Controller;
  *
  * @return mixed
  */
-return function() {
+return function () {
     /**
      * @var Controller $this
      */

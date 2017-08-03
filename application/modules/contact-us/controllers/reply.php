@@ -21,7 +21,7 @@ use Bluz\Proxy\Response;
  *
  * @throws NotFoundException
  */
-return function($id, $message) {
+return function ($id, $message) {
     /**
      * @var Controller $this
      */

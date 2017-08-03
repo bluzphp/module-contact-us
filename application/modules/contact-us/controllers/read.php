@@ -17,7 +17,7 @@ use Bluz\Proxy\Request;
  *
  * @throws NotFoundException
  */
-return function($id) {
+return function ($id) {
     /**
      * @var Controller $this
      */

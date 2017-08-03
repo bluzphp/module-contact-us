@@ -26,7 +26,7 @@ use ReCaptcha\ReCaptcha;
  * @param string $message
  * @return array
  */
-return function($name, $email, $subject, $message) {
+return function ($name, $email, $subject, $message) {
     /**
      * @var Controller $this
      */
