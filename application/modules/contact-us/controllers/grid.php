@@ -4,7 +4,7 @@
  * @link      https://github.com/bluzphp/skeleton
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Application;
 
@@ -16,7 +16,7 @@ use Bluz\Controller\Controller;
  *
  * @return void
  */
-return function () {
+return function() {
     /**
      * @var Controller $this
      */

@@ -4,7 +4,7 @@
  * @link      https://github.com/bluzphp/skeleton
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Application;
 
@@ -21,7 +21,7 @@ use Bluz\Proxy\Response;
  *
  * @throws NotFoundException
  */
-return function ($id, $message) {
+return function($id, $message) {
     /**
      * @var Controller $this
      */
