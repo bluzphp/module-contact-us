@@ -4,13 +4,12 @@
  * @link      https://github.com/bluzphp/skeleton
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Application;
 
 use Application\ContactUs\Row;
 use Bluz\Db\Exception\DbException;
-use Bluz\Proxy\Logger;
 use Bluz\Proxy\Request;
 use Bluz\Proxy\Messages;
 use Bluz\Controller\Controller;

@@ -1,0 +1,26 @@
+build:
+  environment:
+    php:
+      version: '7.1'
+checks:
+  php:
+      psr2_switch_declaration: true
+      psr2_class_declaration: true
+      no_short_open_tag: true
+      deprecated_code_usage: true
+      code_rating: true
+filter:
+  excluded_paths: [bin, data, tests, vendor]
+tools:
+  php_analyzer: true
+  php_code_sniffer:
+    config:
+      standard: PSR2
+  php_cpd:
+      enabled: true
+      excluded_dirs: [bin, data, tests, vendor]
+  php_loc:
+      enabled: true
+      excluded_dirs: [bin, data, tests, vendor]
+  php_mess_detector: true
+  php_pdepend: true

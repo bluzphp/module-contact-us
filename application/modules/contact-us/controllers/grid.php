@@ -4,7 +4,7 @@
  * @link      https://github.com/bluzphp/skeleton
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Application;
 
