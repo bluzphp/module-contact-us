@@ -10,45 +10,44 @@
 </script>
 
 <div class="clearfix" data-spy="grid" data-grid="<?= $grid->getUid() ?>">
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="col-lg-6">
-      <a href="<?= $grid->filter('markRead', 'eq', '', true) ?>" class="btn btn-default navbar-btn ajax <?= (
+  <nav class="navbar navbar-light bg-light justify-content-between">
+    <div>
+      <a href="<?= $grid->filter('markRead', 'eq', '', true) ?>" class="btn btn-secondary navbar-btn ajax <?= (
           $grid->getFilter('markRead', 'eq') === null && $grid->getFilter('markRead', 'ne') === null ? 'btn-info' : ''
         ) ?>">all</a>
-      <a href="<?= $grid->filter('markRead', 'ne', 1) ?>" class="btn btn-default navbar-btn ajax <?= (
+      <a href="<?= $grid->filter('markRead', 'ne', 1) ?>" class="btn btn-secondary navbar-btn ajax <?= (
           $grid->getFilter('markRead', 'ne') ? 'btn-info' : ''
         ) ?>">Unread</a>
-      <a href="<?= $grid->filter('markRead', 'eq', 1) ?>" class="btn btn-default navbar-btn ajax <?= (
+      <a href="<?= $grid->filter('markRead', 'eq', 1) ?>" class="btn btn-secondary navbar-btn ajax <?= (
           $grid->getFilter('markRead', 'eq') ? 'btn-info' : ''
         ) ?>">Read</a>
     </div>
-    <div class="col-lg-6">
-      <form action="<?= $this->url('contact-us', 'grid') ?>" class="navbar-form filter-form pull-right">
-        <div class="input-group">
-            <?php echo
-            $this->partial(
-                'grid/filter-search.phtml',
-                [
-                    'grid' => $grid,
-                    'filters' => [
-                        'name' => __('Name'),
-                        'email' => __('Email'),
-                        'subject' => __('Subject'),
-                        'message' => __('Message'),
-                    ]
-                ]
-            )
-            ?>
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="submit"><?= __("Search") ?></button>
-          </span>
-        </div>
-      </form>
-    </div>
+    <form action="<?= $this->url('contact-us', 'grid') ?>" class="form-inline filter-form">
+      <div class="input-group">
+          <?php echo
+          $this->partial(
+              'grid/filter-search.phtml',
+              [
+                  'grid' => $grid,
+                  'filters' => [
+                      'name' => __('Name'),
+                      'email' => __('Email'),
+                      'subject' => __('Subject'),
+                      'message' => __('Message'),
+                  ]
+              ]
+          )
+          ?>
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="submit"><?= __("Search") ?></button>
+        </span>
+      </div>
+    </form>
   </nav>
+  <hr/>
 
-    <?= $this->partial('grid/total.phtml', ['grid' => $grid]) ?>
-    <?= $this->partial('grid/limit.phtml', ['grid' => $grid]) ?>
+  <?= $this->partial('grid/total.phtml', ['grid' => $grid]) ?>
+  <?= $this->partial('grid/limit.phtml', ['grid' => $grid]) ?>
 
   <table class="table table-hover grid">
     <thead>
@@ -60,7 +59,7 @@
       <th><a href="<?= $grid->order('markRead') ?: '#' ?>"><?= __('Readed') ?></a></th>
       <th><a href="<?= $grid->order('markAnswered') ?: '#' ?>"><?= __('Answered') ?></a></th>
       <th><a href="<?= $grid->order('created') ?>"><?= __('Created') ?></a></th>
-      <th width="100px"></th>
+      <th width="180px"></th>
     </tr>
     </thead>
     <tbody>
@@ -90,7 +89,7 @@
         <td><?= $row['created'] ?></td>
         <td class="controls">
           <a href="<?= $this->url('contact-us', 'reply', ['id' => $row['id']]) ?>"
-             class="btn btn-primary btn-xs dialog reply" data-ajax-method="get" data-modal-style="width:700px;">
+             class="btn btn-secondary btn-xs dialog reply" data-ajax-method="get" data-modal-style="width:700px;">
             <i class="fa fa-share"></i>
           </a>
           <a href="<?= $this->url('contact-us', 'crud', ['id' => $row['id']]) ?>" class="btn btn-primary btn-xs dialog"
