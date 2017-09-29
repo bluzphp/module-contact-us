@@ -4,10 +4,13 @@
  */
 ?>
 <?php $uid = uniqid('form_', false); ?>
-<h3><?= __('Contact us') ?></h3>
 <form id="<?= $uid ?>" class="form-horizontal ajax" method="post" action="<?= $this->url('contact-us', 'index') ?>"
       enctype="application/x-www-form-urlencoded">
-    <?php if ($this->user()) { ?>
+  <div class="modal-header">
+    <h3 class="modal-title"><?= __('Contact us') ?></h3>
+  </div>
+  <div class="modal-body">
+    <?php if ($this->user()) : ?>
       <div class="form-group">
         <label for="subject" class="control-label col-lg-2"><?= __('Subject') ?>:<sup
               class="text-danger">*</sup></label>
@@ -23,14 +26,13 @@
                         required></textarea>
         </div>
       </div>
-    <?php } else { ?>
+    <?php else : ?>
       <div class="form-group">
         <label for="name" class="control-label col-lg-2"><?= __('Name') ?>:<sup class="text-danger">*</sup></label>
         <div class="col-lg-6">
           <input type="text" class="form-control" id="name" name="name" required/>
         </div>
       </div>
-
       <div class="form-group">
         <label for="email" class="control-label col-lg-2"><?= __('Email') ?>:<sup
               class="text-danger">*</sup></label>
@@ -38,7 +40,6 @@
           <input type="email" class="form-control" id="email" name="email" required/>
         </div>
       </div>
-
       <div class="form-group">
         <label for="subject" class="control-label col-lg-2"><?= __('Subject') ?>:<sup
               class="text-danger">*</sup></label>
@@ -46,7 +47,6 @@
           <input type="text" class="form-control" id="subject" name="subject" required/>
         </div>
       </div>
-
       <div class="form-group">
         <label for="content" class="control-label col-lg-2"><?= __('Message') ?>:<sup
               class="text-danger">*</sup></label>
@@ -55,18 +55,19 @@
                         required></textarea>
         </div>
       </div>
-
-        <?php $this->headScript('https://www.google.com/recaptcha/api.js'); ?>
+      <?php $this->headScript('https://www.google.com/recaptcha/api.js'); ?>
       <div class="form-group">
         <label class="col-lg-2"></label>
         <div class="col-lg-6">
           <div class="g-recaptcha" data-sitekey="<?= $siteKey ?>"></div>
         </div>
       </div>
-
-    <?php } ?>
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary"><?= __('Save') ?></button>
+    <?php endif; ?>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary"><?= __('Save') ?></button>
+    </div>
   </div>
 </form>
 <?php
