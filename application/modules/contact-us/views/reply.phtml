@@ -6,8 +6,10 @@
 <form class="form-horizontal ajax" method="post" action="<?= $this->url('contact-us', 'reply') ?>"
       enctype="application/x-www-form-urlencoded">
 <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal">&times;</button>
   <h4 class="modal-title"><?= __('Reply') ?></h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="<?=__('Close')?>">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <div class="modal-body">
   <dl class="dl-horizontal">
@@ -30,12 +32,12 @@
   <p><?= esc($row['message']) ?></p>
   <h4><?= __('Reply') ?></h4>
     <input type="hidden" name="id" value="<?= $row['id'] ?>">
-    <div class="form-group">
+    <div class="form-group row">
       <div class="col-lg-8">
         <textarea rows="5" cols="6" id="content" class="form-control redactor" name="message" required></textarea>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
       <div class="col-lg-6">
       </div>
     </div>
