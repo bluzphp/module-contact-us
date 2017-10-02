@@ -24,7 +24,9 @@ use ReCaptcha\ReCaptcha;
  * @param string $email
  * @param string $subject
  * @param string $message
+ *
  * @return array
+ * @throws ValidatorException
  */
 return function ($name, $email, $subject, $message) {
     /**
@@ -38,6 +40,14 @@ return function ($name, $email, $subject, $message) {
 
     $user = $this->user();
 
+    $this->assign('user', $user);
+    $this->assign('name', $name);
+    $this->assign('email', $email);
+    $this->assign('subject', $subject);
+    $this->assign('message', $message);
+
+    $this->assign('siteKey', Config::getModuleData('contact-us', 'siteKey'));
+
     if (Request::isPost()) {
         $row = new Row();
 
@@ -46,8 +56,8 @@ return function ($name, $email, $subject, $message) {
             $response = $reCaptcha->verify(Request::getParam('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
 
             if (!$response->isSuccess()) {
-                Messages::addError('Invalid captcha');
-                return [];
+                $exception = new ValidatorException();
+                $exception->setError('captcha', 'Invalid captcha');
             }
         }
 
@@ -64,15 +74,14 @@ return function ($name, $email, $subject, $message) {
         } catch (ValidatorException $e) {
             Messages::addError('Please fix all errors');
             return [
+                'name' => $row->name,
+                'email' => $row->email,
+                'subject' => $row->subject,
+                'message' => $row->message,
                 'errors' => $e->getErrors()
             ];
         } catch (DbException $e) {
             Messages::addError('Please contact administrator');
         }
-    } else {
-        $siteKey = Config::getModuleData('contact-us', 'siteKey');
-
-        $this->assign('user', $user);
-        $this->assign('siteKey', $siteKey);
     }
 };

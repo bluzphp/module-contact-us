@@ -68,6 +68,8 @@ class Row extends \Bluz\Db\Row
         /* @var \Application\Users\Row $user */
         if ($user = Auth::getIdentity()) {
             $this->userId = $user->id;
+        } else {
+            $this->userId = \Application\Users\Table::SYSTEM_USER;
         }
     }
 
