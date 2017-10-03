@@ -12,9 +12,9 @@
   </button>
 </div>
 <div class="modal-body">
-  <dl class="dl-horizontal">
-    <dt><?= __('Name') ?></dt>
-    <dd>
+  <dl class="row">
+    <dt class="col-lg-2"><?= __('Name') ?></dt>
+    <dd class="col-lg-10">
       <?php if ($row['userId']): ?>
         <a href="<?=$this->url('users', 'profile', ['id' => $row['userId']])?>">
             <?= esc($row['name']) ?>
@@ -23,24 +23,18 @@
         <?= esc($row['name']) ?>
       <?php endif; ?>
     </dd>
-    <dt><?= __('Email') ?></dt>
-    <dd><a href="mailto:<?= $row['email'] ?>"><?= $row['email'] ?></a></dd>
-    <dt><?= __('Posted') ?></dt>
-    <dd><?= $row['created'] ?></dd>
+    <dt class="col-lg-2"><?= __('Email') ?></dt>
+    <dd class="col-lg-10"><a href="mailto:<?= $row['email'] ?>"><?= $row['email'] ?></a></dd>
+    <dt class="col-lg-2"><?= __('Posted') ?></dt>
+    <dd class="col-lg-10"><?= $row['created'] ?></dd>
   </dl>
+  <hr/>
   <h4><?= esc($row['subject']) ?></h4>
   <p><?= esc($row['message']) ?></p>
-  <h4><?= __('Reply') ?></h4>
-    <input type="hidden" name="id" value="<?= $row['id'] ?>">
-    <div class="form-group row">
-      <div class="col-lg-8">
-        <textarea rows="5" cols="6" id="content" class="form-control redactor" name="message" required></textarea>
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-lg-6">
-      </div>
-    </div>
+  <hr/>
+  <h4><?= __('Answer') ?></h4>
+  <input type="hidden" name="id" value="<?= $row['id'] ?>">
+  <textarea rows="5" cols="6" id="content" class="form-control redactor" name="message" required></textarea>
 </div>
 <div class="modal-footer">
   <button type="submit" class="btn btn-primary"><?= __('Reply') ?></button>

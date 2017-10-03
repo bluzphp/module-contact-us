@@ -21,6 +21,10 @@ To install the module run the command:
 php /vendor/bin/bluzman module:install contact-us
 ```
 
+### Configure
+Create an application at Admin panel (https://www.google.com/recaptcha/admin), 
+than setup *App ID* and *App Secret* in configuration file `modules/contact-us/config.php`.
+
 ### Remove module
 To remove the module, run the command:
     
