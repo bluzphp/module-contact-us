@@ -113,7 +113,7 @@
   <script>
     require(['jquery'], function ($) {
       $(function () {
-        $('#read, #answer').on('success.ajax.bluz', function () {
+        $('#read, #answer').on('success.bluz.ajax', function () {
           let icon = $(this).find('i');
           (icon.hasClass('fa-square-o') && icon.removeClass()) ? icon.addClass('fa-check-square-o fa') : icon.addClass('fa-square-o fa')
         });
