@@ -49,18 +49,5 @@ class ModuleContactUs extends AbstractMigration
                 'update' => 'CASCADE'
             ])
             ->create();
-
-
-        $data = [
-            [
-                'roleId' => 2,
-                'module' => 'contact-us',
-                'privilege' => 'Management'
-            ]
-        ];
-
-        $privileges = $this->table('acl_privileges');
-        $privileges->insert($data)
-            ->save();
     }
 }
