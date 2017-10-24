@@ -9,7 +9,7 @@ use Phinx\Migration\AbstractMigration;
 /**
  * CreateContactUsTable
  */
-class ModuleContactUsPermissions extends AbstractMigration
+class ContactUsPermissions extends AbstractMigration
 {
     /**
      * Migrate Up.

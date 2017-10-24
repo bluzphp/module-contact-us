@@ -9,7 +9,7 @@ use Phinx\Migration\AbstractMigration;
 /**
  * CreateContactUsTable
  */
-class ModuleContactUs extends AbstractMigration
+class ContactUs extends AbstractMigration
 {
     /**
      * Change Method.
