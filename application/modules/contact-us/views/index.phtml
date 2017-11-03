@@ -4,7 +4,7 @@
  */
 ?>
 <?php $uid = uniqid('form_', false); ?>
-<form id="<?= $uid ?>" class="form-horizontal ajax" method="post" action="<?= $this->url('contact-us', 'index') ?>"
+<form id="<?= $uid ?>" class="form-horizontal" data-ajax method="post" action="<?= $this->url('contact-us', 'index') ?>"
       enctype="application/x-www-form-urlencoded">
   <div class="modal-header">
     <h3 class="modal-title"><?= __('Contact us') ?></h3>

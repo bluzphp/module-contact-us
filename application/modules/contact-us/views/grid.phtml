@@ -12,17 +12,17 @@
 <div class="clearfix" data-spy="grid" data-grid="<?= $grid->getUid() ?>">
   <nav class="navbar navbar-light bg-light justify-content-between">
     <div>
-      <a href="<?= $grid->filter('markRead', 'eq', '', true) ?>" class="btn btn-secondary navbar-btn ajax <?= (
+      <a href="<?= $grid->filter('markRead', 'eq', '', true) ?>" class="btn btn-secondary navbar-btn <?= (
           $grid->getFilter('markRead', 'eq') === null && $grid->getFilter('markRead', 'ne') === null ? 'btn-info' : ''
-        ) ?>">all</a>
-      <a href="<?= $grid->filter('markRead', 'ne', 1) ?>" class="btn btn-secondary navbar-btn ajax <?= (
+        ) ?>" data-ajax>all</a>
+      <a href="<?= $grid->filter('markRead', 'ne', 1) ?>" class="btn btn-secondary navbar-btn <?= (
           $grid->getFilter('markRead', 'ne') ? 'btn-info' : ''
-        ) ?>">Unread</a>
-      <a href="<?= $grid->filter('markRead', 'eq', 1) ?>" class="btn btn-secondary navbar-btn ajax <?= (
+        ) ?>" data-ajax>Unread</a>
+      <a href="<?= $grid->filter('markRead', 'eq', 1) ?>" class="btn btn-secondary navbar-btn <?= (
           $grid->getFilter('markRead', 'eq') ? 'btn-info' : ''
-        ) ?>">Read</a>
+        ) ?>" data-ajax>Read</a>
     </div>
-    <form action="<?= $this->url('contact-us', 'grid') ?>" class="form-inline filter-form">
+    <form action="<?= $this->url('contact-us', 'grid') ?>" class="form-inline filter-form" data-ajax>
       <div class="input-group">
           <?php echo
           $this->partial(
@@ -56,7 +56,7 @@
       <th><a href="<?= $grid->order('name') ?: '#' ?>"><?= __('Name') ?></a></th>
       <th><a href="<?= $grid->order('email') ?: '#' ?>"><?= __('Email') ?></a></th>
       <th width="130px"><a href="<?= $grid->order('subject') ?: '#' ?>"><?= __('Subject') ?></a></th>
-      <th><a href="<?= $grid->order('markRead') ?: '#' ?>"><?= __('Readed') ?></a></th>
+      <th><a href="<?= $grid->order('markRead') ?: '#' ?>"><?= __('Read') ?></a></th>
       <th><a href="<?= $grid->order('markAnswered') ?: '#' ?>"><?= __('Answered') ?></a></th>
       <th><a href="<?= $grid->order('created') ?>"><?= __('Created') ?></a></th>
       <th width="180px"></th>
@@ -64,40 +64,43 @@
     </thead>
     <tbody>
     <?php foreach ($grid->getData() as $row) : ?>
-      <tr data-id="<?= $row['id'] ?>" class="<?= ($row['markRead'] == 0) ? 'bold' : '' ?>">
+      <tr data-id="<?= $row['id'] ?>" class="<?= ($row['markRead'] === 0) ? 'bold' : '' ?>">
         <td><?= $row['id'] ?></td>
         <td><?= $row['userId']
                 ? $this->ahref(esc($row['name']), ['users', 'profile', ['id' => $row['userId']]])
                 : esc($row['name']) ?></td>
         <td><a href="mailto:<?= $row['email'] ?>"><?= $row['email'] ?></a></td>
         <td>
-          <a id="subject" href="<?= $this->url('contact-us', 'read', ['id' => $row['id']]) ?>" class="dialog"
-             data-ajax-method="get" data-modal-style="width:700px;">
+          <a id="subject" href="<?= $this->url('contact-us', 'read', ['id' => $row['id']]) ?>"
+             data-ajax-dialog data-ajax-method="get" data-modal-style="width:700px;">
               <?= esc($row['subject']) ?>
           </a>
         </td>
         <td>
-          <a id="read" href="<?= $this->url('contact-us', 'read', ['id' => $row['id']]) ?>" class="btn btn-xs ajax">
+          <a id="read" href="<?= $this->url('contact-us', 'read', ['id' => $row['id']]) ?>" class="btn"
+             data-ajax>
             <i class="fa <?= ($row['markRead']) ? 'fa-check-square-o' : 'fa-square-o' ?>"></i>
           </a>
         </td>
         <td>
-          <a id="answer" href="<?= $this->url('contact-us', 'answer', ['id' => $row['id']]) ?>" class="btn btn-xs ajax">
+          <a id="answer" href="<?= $this->url('contact-us', 'answer', ['id' => $row['id']]) ?>" class="btn"
+             data-ajax>
             <i class="fa <?= ($row['markAnswered']) ? 'fa-check-square-o' : 'fa-square-o' ?>"></i>
           </a>
         </td>
         <td><?= $row['created'] ?></td>
         <td class="controls">
           <a href="<?= $this->url('contact-us', 'reply', ['id' => $row['id']]) ?>"
-             class="btn btn-secondary btn-xs dialog reply" data-ajax-method="get" data-modal-style="width:700px;">
+             class="btn btn-secondary btn-xs reply"
+             data-ajax-dialog data-ajax-method="get" data-modal-style="width:700px;">
             <i class="fa fa-share"></i>
           </a>
-          <a href="<?= $this->url('contact-us', 'crud', ['id' => $row['id']]) ?>" class="btn btn-primary btn-xs dialog"
-             data-ajax-method="get" data-modal-style="width:700px">
+          <a href="<?= $this->url('contact-us', 'crud', ['id' => $row['id']]) ?>" class="btn btn-primary"
+             data-ajax-dialog data-ajax-method="get" data-modal-style="width:700px">
             <i class="fa fa-pencil"></i>
           </a>
-          <a href="<?= $this->url('contact-us', 'crud', ['id' => $row['id']]) ?>"
-             class="confirm btn btn-xs btn-danger ajax" data-ajax-method="delete">
+          <a href="<?= $this->url('contact-us', 'crud', ['id' => $row['id']]) ?>" class="btn btn-danger"
+             data-confirm data-ajax data-ajax-method="delete">
             <i class="fa fa-trash-o"></i>
           </a>
         </td>
