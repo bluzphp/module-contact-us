@@ -19,16 +19,16 @@
 </div>
 <div class="modal-footer">
   <div class="controls pull-left">
-    <a href="<?= $this->url('contact-us', 'reply', ['id' => $row['id']]) ?>" class="btn btn-primary btn-xs dialog"
-       data-ajax-method="get" data-modal-style="width:700px;">
+    <a href="<?= $this->url('contact-us', 'reply', ['id' => $row['id']]) ?>" class="btn btn-primary"
+       data-ajax-dialog data-ajax-method="get" data-modal-style="width:700px;">
       <i class="fa fa-share"></i>
     </a>
-    <a href="<?= $this->url('contact-us', 'crud', ['id' => $row['id']]) ?>" class="confirm btn btn-xs btn-danger ajax"
-       data-ajax-method="delete">
+    <a href="<?= $this->url('contact-us', 'crud', ['id' => $row['id']]) ?>" class="btn btn-danger"
+       data-confirm data-ajax data-ajax-method="delete">
       <i class="fa fa-trash-o"></i>
     </a>
   </div>
-  <form action="<?= $this->url('contact-us', 'grid') ?>" class="ajax" method="get">
+  <form action="<?= $this->url('contact-us', 'grid') ?>" data-ajax method="get">
     <button type="submit" class="btn btn-default"><?= __('Close') ?></button>
   </form>
 </div>
