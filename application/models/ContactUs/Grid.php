@@ -26,11 +26,9 @@ class Grid extends \Bluz\Grid\Grid
     protected $uid = 'contact_us';
 
     /**
-     * init
-     *
-     * @return self
+     * {@inheritdoc}
      */
-    public function init()
+    public function init() : void
     {
         $adapter = new SqlSource();
         $adapter->setSource('SELECT * FROM contact_us');
@@ -41,6 +39,5 @@ class Grid extends \Bluz\Grid\Grid
         $this->setAllowFilters(['name', 'email', 'subject', 'message', 'markRead', 'markAnswered']);
         $this->addAlias('markAnswered', 'answered');
         $this->addAlias('markRead', 'readed');
-        return $this;
     }
 }

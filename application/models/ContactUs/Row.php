@@ -35,7 +35,7 @@ class Row extends \Bluz\Db\Row
     /**
      * {@inheritdoc}
      */
-    protected function beforeSave()
+    protected function beforeSave() : void
     {
         if (!Auth::getIdentity()) {
             $this->addValidator('name')
@@ -61,13 +61,13 @@ class Row extends \Bluz\Db\Row
     /**
      * {@inheritdoc}
      */
-    public function beforeInsert()
+    public function beforeInsert() : void
     {
         $this->created = gmdate('Y-m-d H:i:s');
 
         /* @var \Application\Users\Row $user */
         if ($user = Auth::getIdentity()) {
-            $this->userId = $user->id;
+            $this->userId = $user->getId();
         } else {
             $this->userId = \Application\Users\Table::SYSTEM_USER;
         }
@@ -76,7 +76,7 @@ class Row extends \Bluz\Db\Row
     /**
      * {@inheritdoc}
      */
-    protected function beforeUpdate()
+    protected function beforeUpdate() : void
     {
         $this->updated = gmdate('Y-m-d H:i:s');
     }
