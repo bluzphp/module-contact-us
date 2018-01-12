@@ -8,11 +8,10 @@ declare(strict_types = 1);
 
 namespace Application;
 
-use Application\ContactUs\Row;
+use Bluz\Controller\Controller;
 use Bluz\Db\Exception\DbException;
 use Bluz\Proxy\Request;
 use Bluz\Proxy\Messages;
-use Bluz\Controller\Controller;
 use Bluz\Proxy\Layout;
 use Bluz\Proxy\Config;
 use Bluz\Proxy\Response;
@@ -26,7 +25,8 @@ use ReCaptcha\ReCaptcha;
  * @param string $message
  *
  * @return array
- * @throws ValidatorException
+ * @throws \Bluz\Common\Exception\ConfigurationException
+ * @throws \Bluz\Http\Exception\RedirectException
  */
 return function ($name, $email, $subject, $message) {
     /**
@@ -49,7 +49,7 @@ return function ($name, $email, $subject, $message) {
     $this->assign('siteKey', Config::getModuleData('contact-us', 'siteKey'));
 
     if (Request::isPost()) {
-        $row = new Row();
+        $row = new ContactUs\Row();
 
         if (!$user) {
             $reCaptcha = new ReCaptcha(Config::getModuleData('contact-us', 'secretKey'));

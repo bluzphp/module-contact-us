@@ -89,7 +89,7 @@
           </a>
         </td>
         <td><?= $row['created'] ?></td>
-        <td class="controls">
+        <td class="controls d-flex justify-content-around">
           <a href="<?= $this->url('contact-us', 'reply', ['id' => $row['id']]) ?>"
              class="btn btn-secondary btn-xs reply"
              data-ajax-dialog data-ajax-method="get" data-modal-style="width:700px;">
