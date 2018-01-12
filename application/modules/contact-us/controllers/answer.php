@@ -8,13 +8,17 @@ declare(strict_types = 1);
 
 namespace Application;
 
-use Bluz\Application\Exception\NotFoundException;
 use Bluz\Controller\Controller;
+use Bluz\Http\Exception\NotFoundException;
 
 /**
  * @param int $id
  *
  * @throws NotFoundException
+ * @throws \Bluz\Common\Exception\ConfigurationException
+ * @throws \Bluz\Db\Exception\DbException
+ * @throws \Bluz\Db\Exception\InvalidPrimaryKeyException
+ * @throws \Bluz\Db\Exception\TableNotFoundException
  */
 return function ($id) {
     /**

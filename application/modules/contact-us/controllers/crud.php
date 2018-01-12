@@ -8,9 +8,8 @@ declare(strict_types = 1);
 
 namespace Application;
 
-use Application\ContactUs;
-use Bluz\Controller\Mapper\Crud;
 use Bluz\Controller\Controller;
+use Bluz\Controller\Mapper\Crud;
 
 /**
  * @accept    HTML
@@ -18,6 +17,13 @@ use Bluz\Controller\Controller;
  * @privilege Management
  *
  * @return mixed
+ * @throws \Bluz\Common\Exception\CommonException
+ * @throws \Bluz\Common\Exception\ComponentException
+ * @throws \Bluz\Controller\ControllerException
+ * @throws \Bluz\Http\Exception\ForbiddenException
+ * @throws \Bluz\Http\Exception\NotAcceptableException
+ * @throws \Bluz\Http\Exception\NotAllowedException
+ * @throws \Bluz\Http\Exception\NotImplementedException
  */
 return function () {
     /**
