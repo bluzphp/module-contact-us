@@ -18,7 +18,7 @@ use Bluz\Grid\Source\SqlSource;
  */
 class Grid extends \Bluz\Grid\Grid
 {
-    const DEFAULT_LIMIT = 25;
+    public const DEFAULT_LIMIT = 25;
 
     /**
      * @var string
@@ -27,6 +27,7 @@ class Grid extends \Bluz\Grid\Grid
 
     /**
      * {@inheritdoc}
+     * @throws \Bluz\Grid\GridException
      */
     public function init() : void
     {
