@@ -46,13 +46,13 @@ return function ($name, $email, $subject, $message) {
     $this->assign('subject', $subject);
     $this->assign('message', $message);
 
-    $this->assign('siteKey', Config::getModuleData('contact-us', 'siteKey'));
+    $this->assign('siteKey', Config::get('module.contact-us', 'siteKey'));
 
     if (Request::isPost()) {
         $row = new ContactUs\Row();
 
         if (!$user) {
-            $reCaptcha = new ReCaptcha(Config::getModuleData('contact-us', 'secretKey'));
+            $reCaptcha = new ReCaptcha(Config::get('module.contact-us', 'secretKey'));
             $response = $reCaptcha->verify(Request::getParam('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
 
             if (!$response->isSuccess()) {
