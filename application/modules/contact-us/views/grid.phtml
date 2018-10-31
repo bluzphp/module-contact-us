@@ -12,14 +12,14 @@
 <div class="clearfix" data-spy="grid" data-grid="<?= $grid->getUid() ?>">
   <nav class="navbar navbar-light bg-light justify-content-between">
     <div>
-      <a href="<?= $grid->filter('markRead', 'eq', '', true) ?>" class="btn btn-secondary navbar-btn <?= (
-          $grid->getFilter('markRead', 'eq') === null && $grid->getFilter('markRead', 'ne') === null ? 'btn-info' : ''
+      <a href="<?= $grid->filter('markRead', 'eq', '', true) ?>" class="btn <?= (
+          $grid->getFilter('markRead', 'eq') === null && $grid->getFilter('markRead', 'ne') === null ? 'btn-info' : 'btn-secondary'
         ) ?>" data-ajax>all</a>
-      <a href="<?= $grid->filter('markRead', 'ne', 1) ?>" class="btn btn-secondary navbar-btn <?= (
-          $grid->getFilter('markRead', 'ne') ? 'btn-info' : ''
+      <a href="<?= $grid->filter('markRead', 'ne', 1) ?>" class="btn <?= (
+          $grid->getFilter('markRead', 'ne') ? 'btn-info' : 'btn-secondary'
         ) ?>" data-ajax>Unread</a>
-      <a href="<?= $grid->filter('markRead', 'eq', 1) ?>" class="btn btn-secondary navbar-btn <?= (
-          $grid->getFilter('markRead', 'eq') ? 'btn-info' : ''
+      <a href="<?= $grid->filter('markRead', 'eq', 1) ?>" class="btn <?= (
+          $grid->getFilter('markRead', 'eq') ? 'btn-info' : 'btn-secondary'
         ) ?>" data-ajax>Read</a>
     </div>
     <form action="<?= $this->url('contact-us', 'grid') ?>" class="form-inline filter-form" data-ajax>
@@ -89,7 +89,7 @@
           </a>
         </td>
         <td><?= $row['created'] ?></td>
-        <td class="controls">
+        <td class="controls d-flex justify-content-around">
           <a href="<?= $this->url('contact-us', 'reply', ['id' => $row['id']]) ?>"
              class="btn btn-secondary btn-xs reply"
              data-ajax-dialog data-ajax-method="get" data-modal-style="width:700px;">

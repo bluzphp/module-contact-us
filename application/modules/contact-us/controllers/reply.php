@@ -8,11 +8,11 @@ declare(strict_types = 1);
 
 namespace Application;
 
-use Bluz\Application\Exception\NotFoundException;
+use Bluz\Controller\Controller;
+use Bluz\Http\Exception\NotFoundException;
 use Bluz\Proxy\Messages;
 use Bluz\Proxy\Request;
 use Bluz\Proxy\Mailer;
-use Bluz\Controller\Controller;
 use Bluz\Proxy\Response;
 
 /**
@@ -20,13 +20,18 @@ use Bluz\Proxy\Response;
  * @param string $message
  *
  * @throws NotFoundException
+ * @throws \Bluz\Common\Exception\ConfigurationException
+ * @throws \Bluz\Db\Exception\DbException
+ * @throws \Bluz\Db\Exception\InvalidPrimaryKeyException
+ * @throws \Bluz\Db\Exception\TableNotFoundException
+ * @throws \Bluz\Http\Exception\RedirectException
  */
 return function ($id, $message) {
     /**
      * @var Controller $this
      */
     $row = ContactUs\Table::findRow($id);
-    if (empty($row)) {
+    if (!$row) {
         throw new NotFoundException('Row not found');
     }
 
