@@ -39,7 +39,7 @@
           )
           ?>
         <span class="input-group-btn">
-          <button class="btn btn-secondary" type="submit"><?= __("Search") ?></button>
+          <button class="btn btn-secondary" type="submit"><?= __('Search') ?></button>
         </span>
       </div>
     </form>
@@ -66,7 +66,7 @@
     <?php foreach ($grid->getData() as $row) : ?>
       <tr data-id="<?= $row['id'] ?>" class="<?= ($row['markRead'] === 0) ? 'bold' : '' ?>">
         <td><?= $row['id'] ?></td>
-        <td><?= $row['userId']
+        <td><?= ($row['userId'] && $row['userId'] !== \Application\Users\Table::SYSTEM_USER)
                 ? $this->ahref(esc($row['name']), ['users', 'profile', ['id' => $row['userId']]])
                 : esc($row['name']) ?></td>
         <td><a href="mailto:<?= $row['email'] ?>"><?= $row['email'] ?></a></td>
@@ -109,9 +109,9 @@
     </tbody>
   </table>
 
-    <?= $this->partial('grid/empty-rows.phtml', ['grid' => $grid]) ?>
-    <?= $this->partial('grid/pagination.phtml', ['grid' => $grid]) ?>
-    <?= $this->partial('grid/total.phtml', ['grid' => $grid]) ?>
+  <?= $this->partial('grid/empty-rows.phtml', ['grid' => $grid]) ?>
+  <?= $this->partial('grid/pagination.phtml', ['grid' => $grid]) ?>
+  <?= $this->partial('grid/total.phtml', ['grid' => $grid]) ?>
 
   <script>
     require(['jquery'], function ($) {
@@ -123,6 +123,5 @@
       })
     })
   </script
-
 
 </div>

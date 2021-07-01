@@ -50,24 +50,22 @@ return function ($name, $email, $subject, $message) {
 
     if (Request::isPost()) {
         $row = new ContactUs\Row();
-
-        if (!$user) {
-            $reCaptcha = new ReCaptcha(Config::get('module.contact-us', 'secretKey'));
-            $response = $reCaptcha->verify(Request::getParam('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
-
-            if (!$response->isSuccess()) {
-                $exception = new ValidatorException();
-                $exception->setError('captcha', 'Invalid captcha');
-            }
-        }
-
         $row->name = $user ? $user->login : $name;
         $row->email = $user ? $user->email : $email;
-
         $row->subject = $subject;
         $row->message = $message;
 
         try {
+			if (!$user) {
+				$reCaptcha = new ReCaptcha(Config::get('module.contact-us', 'secretKey'));
+				$response = $reCaptcha->verify(Request::getParam('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
+
+				if (!$response->isSuccess()) {
+					$exception = new ValidatorException();
+					$exception->setError('captcha', __('Invalid captcha'));
+					throw $exception;
+				}
+			}
             $row->save();
             Messages::addSuccess('Message was successfully save');
             Response::reload();
