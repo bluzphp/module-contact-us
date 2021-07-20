@@ -93,19 +93,24 @@
           <a href="<?= $this->url('contact-us', 'reply', ['id' => $row['id']]) ?>"
              class="btn btn-secondary btn-xs reply"
              data-ajax-dialog data-ajax-method="get" data-modal-style="width:700px;">
-            <i class="fa fa-share"></i>
+              <i class="bi bi-reply"></i>
           </a>
           <a href="<?= $this->url('contact-us', 'crud', ['id' => $row['id']]) ?>" class="btn btn-primary"
              data-ajax-dialog data-ajax-method="get" data-modal-style="width:700px">
-            <i class="fas fa-pencil-alt"></i>
+              <i class="bi bi-pencil"></i>
           </a>
           <a href="<?= $this->url('contact-us', 'crud', ['id' => $row['id']]) ?>" class="btn btn-danger"
              data-confirm data-ajax data-ajax-method="delete">
-            <i class="fa fa-trash"></i>
+              <i class="bi bi-trash"></i>
           </a>
         </td>
       </tr>
     <?php endforeach; ?>
+    <?php if ($grid->total() === 0) : ?>
+        <tr>
+            <td colspan="8" align="center"><?=__('No data')?></td>
+        </tr>
+    <?php endif ?>
     </tbody>
   </table>
 

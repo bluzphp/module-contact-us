@@ -10,6 +10,7 @@ namespace Application;
 
 use Bluz\Controller\Controller;
 use Bluz\Db\Exception\DbException;
+use Bluz\Http\Exception\RedirectException;
 use Bluz\Proxy\Request;
 use Bluz\Proxy\Messages;
 use Bluz\Proxy\Layout;
@@ -25,8 +26,7 @@ use ReCaptcha\ReCaptcha;
  * @param string $message
  *
  * @return array
- * @throws \Bluz\Common\Exception\ConfigurationException
- * @throws \Bluz\Http\Exception\RedirectException
+ * @throws RedirectException
  */
 return function ($name, $email, $subject, $message) {
     /**

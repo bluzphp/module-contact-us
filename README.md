@@ -3,7 +3,7 @@
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/bluzphp/module-contact-us.svg?label=version&style=flat)](https://packagist.org/packages/bluzphp/module-contact-us)
 
-[![Build Status](https://img.shields.io/travis/bluzphp/module-contact-us/master.svg?style=flat)](https://travis-ci.org/bluzphp/module-contact-us)
+[![Build Status](https://img.shields.io/travis/bluzphp/module-contact-us/master.svg?style=flat)](https://travis-ci.com/bluzphp/module-contact-us)
 
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/bluzphp/module-contact-us.svg?style=flat)](https://scrutinizer-ci.com/g/bluzphp/module-contact-us/)
 
@@ -16,8 +16,8 @@
 To install the module run the command:
   
 ```bash
-php /vendor/bin/bluzman module:install contact-us
-php /vendor/bin/bluzman db:migrate
+php ./vendor/bin/bluzman module:install contact-us
+php ./vendor/bin/bluzman db:migrate
 ```
 
 ### Configure
@@ -28,5 +28,5 @@ than setup *App ID* and *App Secret* in configuration file `modules/contact-us/c
 To remove the module, run the command:
     
 ```bash
-php /vendor/bin/bluzman module:remove contact-us
+php ./vendor/bin/bluzman module:remove contact-us
 ```

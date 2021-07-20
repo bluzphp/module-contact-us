@@ -11,14 +11,14 @@
   </div>
   <div class="modal-body">
     <?php if ($this->user()) : ?>
-      <div class="form-group row">
+      <div class="form-group row mb-1">
         <label for="subject" class="col-form-label col-lg-2"><?= __('Subject') ?>:<sup
               class="text-danger">*</sup></label>
         <div class="col-lg-6">
           <input type="text" class="form-control" id="subject" name="subject" value="<?=esc($subject)?>" required/>
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row mb-1">
         <label for="content" class="col-form-label col-lg-2"><?= __('Message') ?>:<sup
               class="text-danger">*</sup></label>
         <div class="col-lg-6">
@@ -27,27 +27,27 @@
         </div>
       </div>
     <?php else : ?>
-      <div class="form-group row">
+      <div class="form-group row mb-1">
         <label for="name" class="col-form-label col-lg-2"><?= __('Name') ?>:<sup class="text-danger">*</sup></label>
         <div class="col-lg-6">
           <input type="text" class="form-control" id="name" name="name" value="<?=esc($name)?>" required/>
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row mb-1">
         <label for="email" class="col-form-label col-lg-2"><?= __('Email') ?>:<sup
               class="text-danger">*</sup></label>
         <div class="col-lg-6">
           <input type="email" class="form-control" id="email" name="email" value="<?=esc($email)?>" required/>
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row mb-1">
         <label for="subject" class="col-form-label col-lg-2"><?= __('Subject') ?>:<sup
               class="text-danger">*</sup></label>
         <div class="col-lg-6">
           <input type="text" class="form-control" id="subject" name="subject" value="<?=esc($subject)?>" required/>
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row mb-1">
         <label for="content" class="col-form-label col-lg-2"><?= __('Message') ?>:<sup
               class="text-danger">*</sup></label>
         <div class="col-lg-6">
@@ -56,7 +56,7 @@
         </div>
       </div>
       <?php $this->headScript('https://www.google.com/recaptcha/api.js'); ?>
-      <div class="form-group row">
+      <div class="form-group row mb-1">
         <label class="col-lg-2" for="captcha"></label>
         <div class="col-lg-6">
           <input type="hidden" name="captcha" id="captcha"/>

@@ -8,8 +8,15 @@ declare(strict_types = 1);
 
 namespace Application;
 
+use Bluz\Common\Exception\CommonException;
+use Bluz\Common\Exception\ComponentException;
 use Bluz\Controller\Controller;
+use Bluz\Controller\ControllerException;
 use Bluz\Controller\Mapper\Crud;
+use Bluz\Http\Exception\ForbiddenException;
+use Bluz\Http\Exception\NotAcceptableException;
+use Bluz\Http\Exception\NotAllowedException;
+use Bluz\Http\Exception\NotImplementedException;
 
 /**
  * @accept    HTML
@@ -17,13 +24,13 @@ use Bluz\Controller\Mapper\Crud;
  * @privilege Management
  *
  * @return mixed
- * @throws \Bluz\Common\Exception\CommonException
- * @throws \Bluz\Common\Exception\ComponentException
- * @throws \Bluz\Controller\ControllerException
- * @throws \Bluz\Http\Exception\ForbiddenException
- * @throws \Bluz\Http\Exception\NotAcceptableException
- * @throws \Bluz\Http\Exception\NotAllowedException
- * @throws \Bluz\Http\Exception\NotImplementedException
+ * @throws CommonException
+ * @throws ComponentException
+ * @throws ControllerException
+ * @throws ForbiddenException
+ * @throws NotAcceptableException
+ * @throws NotAllowedException
+ * @throws NotImplementedException
  */
 return function () {
     /**

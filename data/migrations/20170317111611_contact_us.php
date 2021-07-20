@@ -44,8 +44,8 @@ class ContactUs extends AbstractMigration
             ->addColumn('email', 'string', ['length' => 255])
             ->addColumn('subject', 'string', ['length' => 255])
             ->addColumn('message', 'text')
-            ->addColumn('markRead', 'boolean')
-            ->addColumn('markAnswered', 'boolean')
+            ->addColumn('markRead', 'boolean', ['default' => false])
+            ->addColumn('markAnswered', 'boolean', ['default' => false])
             ->addTimestamps('created', 'updated')
             ->addForeignKey('userId', 'users', 'id', [
                 'delete' => 'CASCADE',
