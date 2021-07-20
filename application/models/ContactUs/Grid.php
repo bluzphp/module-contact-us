@@ -1,10 +1,11 @@
 <?php
+
 /**
  * @copyright Bluz PHP Team
  * @link https://github.com/bluzphp/skeleton
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Application\ContactUs;
 
@@ -29,7 +30,7 @@ class Grid extends \Bluz\Grid\Grid
      * {@inheritdoc}
      * @throws \Bluz\Grid\GridException
      */
-    public function init() : void
+    public function init(): void
     {
         $adapter = new SqlSource();
         $adapter->setSource('SELECT * FROM contact_us');

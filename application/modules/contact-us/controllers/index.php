@@ -1,10 +1,11 @@
 <?php
+
 /**
  * @copyright Bluz PHP Team
  * @link      https://github.com/bluzphp/skeleton
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Application;
 
@@ -56,16 +57,16 @@ return function ($name, $email, $subject, $message) {
         $row->message = $message;
 
         try {
-			if (!$user) {
-				$reCaptcha = new ReCaptcha(Config::get('module.contact-us', 'secretKey'));
-				$response = $reCaptcha->verify(Request::getParam('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
+            if (!$user) {
+                $reCaptcha = new ReCaptcha(Config::get('module.contact-us', 'secretKey'));
+                $response = $reCaptcha->verify(Request::getParam('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
 
-				if (!$response->isSuccess()) {
-					$exception = new ValidatorException();
-					$exception->setError('captcha', __('Invalid captcha'));
-					throw $exception;
-				}
-			}
+                if (!$response->isSuccess()) {
+                    $exception = new ValidatorException();
+                    $exception->setError('captcha', __('Invalid captcha'));
+                    throw $exception;
+                }
+            }
             $row->save();
             Messages::addSuccess('Message was successfully save');
             Response::reload();

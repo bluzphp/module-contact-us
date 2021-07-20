@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 // @group module-contact-us
 $I = new AcceptanceTester($scenario);
 $I->amAdmin();

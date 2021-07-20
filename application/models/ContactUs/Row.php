@@ -1,10 +1,11 @@
 <?php
+
 /**
  * @copyright Bluz PHP Team
  * @link https://github.com/bluzphp/skeleton
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Application\ContactUs;
 
@@ -35,33 +36,29 @@ class Row extends \Bluz\Db\Row
     /**
      * {@inheritdoc}
      */
-    protected function beforeSave() : void
+    protected function beforeSave(): void
     {
         if (!Auth::getIdentity()) {
             $this->addValidator('name')
                 ->required()
-                ->alpha(' \'')
-            ;
+                ->alpha(' \'');
             $this->addValidator('email')
                 ->required()
-                ->email()
-            ;
+                ->email();
         }
 
         $this->addValidator('subject')
             ->required()
-            ->alpha(' \'')
-        ;
+            ->alpha(' \'');
 
         $this->addValidator('message')
-            ->required()
-        ;
+            ->required();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function beforeInsert() : void
+    public function beforeInsert(): void
     {
         $this->created = gmdate('Y-m-d H:i:s');
 
@@ -76,7 +73,7 @@ class Row extends \Bluz\Db\Row
     /**
      * {@inheritdoc}
      */
-    protected function beforeUpdate() : void
+    protected function beforeUpdate(): void
     {
         $this->updated = gmdate('Y-m-d H:i:s');
     }

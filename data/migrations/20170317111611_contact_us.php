@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Bluz PHP Team
  * @link https://github.com/bluzphp/skeleton
@@ -47,10 +48,15 @@ class ContactUs extends AbstractMigration
             ->addColumn('markRead', 'boolean', ['default' => false])
             ->addColumn('markAnswered', 'boolean', ['default' => false])
             ->addTimestamps('created', 'updated')
-            ->addForeignKey('userId', 'users', 'id', [
-                'delete' => 'CASCADE',
-                'update' => 'CASCADE'
-            ])
+            ->addForeignKey(
+                'userId',
+                'users',
+                'id',
+                [
+                    'delete' => 'CASCADE',
+                    'update' => 'CASCADE'
+                ]
+            )
             ->create();
     }
 }

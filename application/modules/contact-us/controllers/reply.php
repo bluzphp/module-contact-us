@@ -1,10 +1,11 @@
 <?php
+
 /**
  * @copyright Bluz PHP Team
  * @link      https://github.com/bluzphp/skeleton
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Application;
 
@@ -16,7 +17,7 @@ use Bluz\Proxy\Mailer;
 use Bluz\Proxy\Response;
 
 /**
- * @param int    $id
+ * @param int $id
  * @param string $message
  *
  * @throws NotFoundException
