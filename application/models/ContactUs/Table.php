@@ -14,8 +14,8 @@ namespace Application\ContactUs;
  *
  * @package  Application\ContactUs
  *
- * @method   static Row findRow($primaryKey)
- * @method   static Row findRowWhere($whereList)
+ * @method   static Row|null findRow($primaryKey)
+ * @method   static Row|null findRowWhere($whereList)
  */
 class Table extends \Bluz\Db\Table
 {
