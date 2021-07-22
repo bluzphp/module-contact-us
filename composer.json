@@ -2,10 +2,10 @@
   "name": "bluzphp/module-contact-us",
   "type": "bluz-module",
   "license": "MIT",
-  "description": "Contact us bluz module",
+  "description": "Contact Us bluz module",
   "require": {
-    "bluzphp/framework": "~7.11",
-    "bluzphp/composer-plugin": "~2.1",
-    "google/recaptcha": "~1.1"
+    "bluzphp/framework": "~7.13",
+    "bluzphp/composer-plugin": "~2.4",
+    "google/recaptcha": "~1.2"
   }
 }

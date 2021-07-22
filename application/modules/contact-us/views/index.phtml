@@ -63,21 +63,25 @@ $uid = uniqid('form_', false); ?>
                         required><?= esc($message) ?></textarea>
                 </div>
             </div>
-            <?php
-            $this->headScript('https://www.google.com/recaptcha/api.js'); ?>
-            <div class="form-group row mb-1">
-                <label class="col-lg-2" for="captcha"></label>
-                <div class="col-lg-6">
-                    <input type="hidden" name="captcha" id="captcha"/>
-                    <div class="g-recaptcha" data-sitekey="<?= $siteKey ?>"></div>
-                </div>
-            </div>
         <?php
         endif; ?>
     </div>
     <div class="modal-footer">
         <div class="form-group">
+            <?php if ($recaptcha) :
+                $this->headScript('https://www.google.com/recaptcha/api.js'); ?>
+                <script>
+                    function onSubmit(token) {
+                        document.getElementById("<?= $uid ?>").submit();
+                    }
+                </script>
+                <button class="g-recaptcha btn btn-primary"
+                        data-sitekey="<?= $siteKey ?>"
+                        data-callback='onSubmit'
+                        data-action='submit'><?= __('Save') ?></button>
+            <?php else: ?>
             <button type="submit" class="btn btn-primary"><?= __('Save') ?></button>
+            <?php endif; ?>
         </div>
     </div>
 </form>

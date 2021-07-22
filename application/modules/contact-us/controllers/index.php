@@ -47,7 +47,8 @@ return function ($name, $email, $subject, $message) {
     $this->assign('subject', $subject);
     $this->assign('message', $message);
 
-    $this->assign('siteKey', Config::get('module.contact-us', 'siteKey'));
+    $this->assign('recaptcha', Config::get('module.contact-us', 'recaptcha', 'enabled'));
+    $this->assign('siteKey', Config::get('module.contact-us', 'recaptcha', 'siteKey'));
 
     if (Request::isPost()) {
         $row = new ContactUs\Row();
@@ -57,8 +58,8 @@ return function ($name, $email, $subject, $message) {
         $row->message = $message;
 
         try {
-            if (!$user) {
-                $reCaptcha = new ReCaptcha(Config::get('module.contact-us', 'secretKey'));
+            if (!$user && Config::get('module.contact-us', 'recaptcha', 'enabled')) {
+                $reCaptcha = new ReCaptcha(Config::get('module.contact-us', 'recaptcha', 'secretKey'));
                 $response = $reCaptcha->verify(Request::getParam('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
 
                 if (!$response->isSuccess()) {
